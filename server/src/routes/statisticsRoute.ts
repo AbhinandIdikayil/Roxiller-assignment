@@ -10,4 +10,6 @@ const statisticsController = new StatisticsController(statisticsService);
 
 statisticsRouter.route('/month').get(statisticsController.monthBasedStatistics.bind(statisticsController));
 
+statisticsRouter.route('/pie-chart').get(statisticsController.pieChart.bind(statisticsController))
+
 export { statisticsRouter }

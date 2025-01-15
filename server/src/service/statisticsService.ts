@@ -22,4 +22,11 @@ export class StatisticsService implements IStatisticsService {
             totalNumberOfUnSoldItem
         }
     }
+    async unique_category_and_number_of_items_from_that_category(month: string = 'Mar'): Promise<any> {
+        if (!Object.values(Month).includes(month as Month)) {
+            throw new Error(`Invalid month: ${month}. Valid months are: ${Object.values(Month).join(", ")}`);
+        }
+        const monthEnum = month as Month;
+        return await this.statisticsRepo.uniqueCategoryAndNumberOfItem(monthEnum)
+    }
 }

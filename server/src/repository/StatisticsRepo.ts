@@ -60,7 +60,6 @@ export class StatisticsRepo implements IStatisticRepo {
                     sold: 1,
                     dateOfSale: 1
                 }
-
             },
             {
                 $match: {
@@ -70,6 +69,28 @@ export class StatisticsRepo implements IStatisticRepo {
             },
             {
                 $count: 'count'
+            }
+        ])
+    }
+    async uniqueCategoryAndNumberOfItem(month: Month): Promise<any> {
+        return await TransactionModel.aggregate([
+
+            {
+                $project: {
+                    month: { $dateToString: { format: "%b", date: "$dateOfSale", timezone: "+04:30" } },
+                    category: 1
+                }
+            },
+            {
+                $match: {
+                    'month': month
+                }
+            },
+            {
+                $group: {
+                    _id: '$category',
+                    count: { $sum: 1 }
+                }
             }
         ])
     }

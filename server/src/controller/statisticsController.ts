@@ -25,4 +25,14 @@ export class StatisticsController {
             next(error)
         }
     }
+
+    async pieChart(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { month } = req.query
+            const data = await this.statisticsService.unique_category_and_number_of_items_from_that_category(month as string)
+            return success(res, { data })
+        } catch (error) {
+            next(error)
+        }
+    }
 }

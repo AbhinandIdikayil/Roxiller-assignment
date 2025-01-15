@@ -10,4 +10,5 @@ export interface IStatisticRepo {
     totalSaleOfMonth(month:Month): Promise<any>
     totalNumberOfSoldItem(month: Month): Promise<any>
     totalNumberOfUnSoldItem(month: Month): Promise<any>
+    uniqueCategoryAndNumberOfItem(month:Month): Promise<any>
 }
