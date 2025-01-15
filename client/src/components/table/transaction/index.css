@@ -11,10 +11,9 @@
     line-height: 28px;
     padding: 0 1rem;
     padding-left: 2.5rem;
-    border: 1px solid transparent;
     border-radius: 8px;
     outline: none;
-    background-color: #f3f3f4;
+    background-color: #ffffff;
     color: #0d0c22;
     transition: .3s ease;
 }

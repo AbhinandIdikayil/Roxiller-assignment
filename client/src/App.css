@@ -40,3 +40,70 @@
 .read-the-docs {
   color: #888;
 }
+
+
+
+.icon {
+  animation: rotate 0.5s forwards;
+}
+
+@keyframes rotate {
+  from {}
+
+  to {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+}
+
+.drop-down {
+  animation: show 0.5s ease-in-out forwards;
+}
+
+@keyframes show {
+  0% {
+    height: 0;
+    opacity: 0;
+    transform: scaleY(0.8);
+  }
+
+  100% {
+    height: 12rem;
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+
+div::-webkit-scrollbar {
+  width: 2px;
+  height: 4px;
+}
+
+/* Define the thumb style */
+div::-webkit-scrollbar-thumb {
+  background: #000000;
+  /* #4d7fff */
+  border-radius: 10px;
+}
+
+/* Define the track style */
+div::-webkit-scrollbar-track {
+  background-color: #fffefe;
+  border: 5px solid #ffffff;
+  border-radius: 10px;
+}
+
+/* Define the button style */
+div::-webkit-scrollbar-button {
+  /* background-color: #4d7fff; */
+  border-radius: 5px;
+}
+
+/* Define the button style when being hovered over */
+div::-webkit-scrollbar-button:hover {
+  background-color: #999999;
+}
