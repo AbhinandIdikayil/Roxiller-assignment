@@ -29,10 +29,27 @@ export class StatisticsController {
     async pieChart(req: Request, res: Response, next: NextFunction) {
         try {
             const { month } = req.query
+            if (!month) {
+                throw ErrorResponse.badRequest('provide month in query')
+            }
             const data = await this.statisticsService.unique_category_and_number_of_items_from_that_category(month as string)
             return success(res, { data })
         } catch (error) {
             next(error)
         }
     }
+
+    async barChart(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { month } = req.query
+            if (!month) {
+                throw ErrorResponse.badRequest('provide month in query')
+            }
+            const data = await this.statisticsService.priceRange_and_NumberOfItems_forBarChart(month as string)
+            return success(res, { data })
+        } catch (error) {
+            next(error);
+        }
+    }
+
 }

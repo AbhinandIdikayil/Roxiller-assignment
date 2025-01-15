@@ -12,4 +12,6 @@ statisticsRouter.route('/month').get(statisticsController.monthBasedStatistics.b
 
 statisticsRouter.route('/pie-chart').get(statisticsController.pieChart.bind(statisticsController))
 
+statisticsRouter.route('/bar-chart').get(statisticsController.barChart.bind(statisticsController))
+
 export { statisticsRouter }

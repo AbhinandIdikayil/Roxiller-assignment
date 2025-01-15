@@ -11,4 +11,5 @@ export interface IStatisticRepo {
     totalNumberOfSoldItem(month: Month): Promise<any>
     totalNumberOfUnSoldItem(month: Month): Promise<any>
     uniqueCategoryAndNumberOfItem(month:Month): Promise<any>
+    barChartRepo_with_priceRange_and_numberOfItems(month: Month): Promise<any>
 }
