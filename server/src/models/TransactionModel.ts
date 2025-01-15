@@ -1,16 +1,17 @@
 import mongoose, { Document, Schema } from 'mongoose'
 
-interface ITransaction extends Document {
+export interface ITransactionDoc extends Document {
     id: string
     title: string,
     description: string,
     category: string,
+    price: number,
     image: string,
     sold: boolean,
     dateOfSale: Date
 }
 
-const TransactionSchema = new Schema<ITransaction>({
+const TransactionSchema = new Schema<ITransactionDoc>({
     title: {
         type: String,
         required: true
@@ -26,6 +27,10 @@ const TransactionSchema = new Schema<ITransaction>({
     image: {
         type: String,
         required: true
+    },
+    price: {
+        type: Number,
+        required: true,
     },
     sold: {
         type: Boolean,

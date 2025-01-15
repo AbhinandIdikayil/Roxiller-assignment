@@ -1,13 +1,27 @@
 import express from "express";
 import { CONFIG } from "./constants/env";
 import { router } from "./routes";
-const app = express()
+import { connectDB, disconnectDB } from "./db/connection";
 
+const startServer = async () => {
 
-app.use(express.json());
+    const app = express()
+    app.use(express.json());
+    app.use('/api', router);
+    const server = app.listen(CONFIG.PORT, async () => {
+        await connectDB()
+        console.log(`Server is running on port ${CONFIG.PORT}`)
+    })
 
-app.use('/api',router);
+    const shutDown = async () => {
+        await disconnectDB()
+        server.close(() => {
+            console.log('Server closed')
+        })
+    }
+    process.on('SIGINT',shutDown)
+    process.on('SIGTERM',shutDown)
+}
 
-app.listen(CONFIG.PORT, () => {
-    console.log(`Server is running on port ${CONFIG.PORT}`)
-})
+startServer()
+

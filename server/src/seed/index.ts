@@ -1,24 +1,17 @@
-const initializeDatabase = async () => {
+import { CONFIG } from "../constants/env";
+import { TransactionModel } from "../models/TransactionModel";
+import axios from 'axios'
+export const initializeDatabase = async () => {
     try {
-        // Check if data already exists
-        const existingData = await Transaction.countDocuments();
+        const existingData = await TransactionModel.countDocuments();
         if (existingData > 0) {
             console.log('Database already initialized');
             return { message: 'Database already initialized' };
         }
-
-        // Fetch data from third-party API
-        const response = await axios.get('https://s3.amazonaws.com/roxiler.com/product_transaction.json');
+        const response = await axios.get(CONFIG.SEED_API_URL);
         const transactions = response.data;
-
-        // Process and insert data
-        const formattedTransactions = transactions.map(transaction => ({
-            ...transaction,
-            dateOfSale: new Date(transaction.dateOfSale)
-        }));
-
-        await Transaction.insertMany(formattedTransactions);
-        return { message: 'Database initialized successfully', count: formattedTransactions.length };
+        await TransactionModel.insertMany(transactions);
+        return { message: 'Database initialized successfully' };
     } catch (error) {
         console.error('Error initializing database:', error);
         throw error;

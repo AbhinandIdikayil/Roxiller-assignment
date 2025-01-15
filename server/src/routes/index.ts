@@ -4,7 +4,7 @@ import { transactionRouter } from './transactionRoute';
 const router = Router();
 
 
-router.use('/', transactionRouter)
+router.use('/transaction', transactionRouter)
 
 router.use('/statistics', statisticsRouter);
 
