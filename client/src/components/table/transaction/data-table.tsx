@@ -66,14 +66,13 @@ export function DataTable<TData, TValue>({
                     month
                 }
             })
-            console.log(data)
             setTransactions(data?.data)
         } catch (error) {
             console.log(error)
         }
     }
     useEffect(() => {
-        fetch(pagination.pageIndex, pagination.pageSize, debounceSearchQuery,selectedMonth);
+        fetch(pagination.pageIndex, pagination.pageSize, debounceSearchQuery, selectedMonth);
     }, [pagination.pageIndex, debounceSearchQuery, selectedMonth])
 
     const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -110,9 +109,9 @@ export function DataTable<TData, TValue>({
                             className="float-end mt-1.5 text-gray-600"
                         />
                     </div>
-                        <div ref={dropdownRef} className="hidden ">
-                            <DropDown months={months} setValue={setSelectedMonth} />
-                        </div>
+                    <div ref={dropdownRef} className="hidden ">
+                        <DropDown months={months} setValue={setSelectedMonth} />
+                    </div>
                 </div>
             </div>
             <div className="rounded-md border">
