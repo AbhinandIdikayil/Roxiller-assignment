@@ -3,7 +3,7 @@ import { ITransactionDoc } from "../models/TransactionModel";
 
 
 export interface ITransactionRepo {
-    getAllTransactions(search: string, page: number, pageSize: number): Promise<ITransactionDoc[]>
+    getAllTransactions(search: string, page: number, pageSize: number, month:Month): Promise<ITransactionDoc[]>
 }
 
 export interface IStatisticRepo {

@@ -1,9 +1,10 @@
+import { Month } from "../constants/month";
 import { ITransactionRepo } from "../interfaces/IRepo";
 import { ITransactionDoc, TransactionModel } from "../models/TransactionModel";
 
 
 export class TransactionRepo implements ITransactionRepo {
-    async getAllTransactions(search: string, page: number, pageSize: number): Promise<ITransactionDoc[]> {
+    async getAllTransactions(search: string, page: number, pageSize: number, month:Month): Promise<ITransactionDoc[]> {
         const priceRegex = /\d+/;
         const priceMatch = search.match(priceRegex);
         let pagination = [
@@ -13,6 +14,9 @@ export class TransactionRepo implements ITransactionRepo {
         return await TransactionModel.aggregate([
             {
                 $match: {
+                    $expr: {
+                        $eq: [{ $dateToString: { format: "%b", date: "$dateOfSale", timezone: "+04:30" } }, month]
+                    },
                     ...(search ? {
                         $or: [
                             { 'title': { $regex: search, $options: 'i' } },

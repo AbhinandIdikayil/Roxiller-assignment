@@ -8,8 +8,8 @@ import { corsOption } from "./constants/corsOption";
 const startServer = async () => {
 
     const app = express()
-    app.use(express.json());
     app.use(cors(corsOption))
+    app.use(express.json());
     app.use('/api', router);
     const server = app.listen(CONFIG.PORT, async () => {
         await connectDB()

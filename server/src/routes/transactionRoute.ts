@@ -10,6 +10,11 @@ const transactionController = new TransactionController(transactionService);
 
 transactionRouter.route('/init').get(transactionController.initialize.bind(transactionController));
 
+
+/**
+ * @param (page, pageSize, search,month)
+ */
+
 transactionRouter.route('/get-all').get(transactionController.getAllTransaction.bind(transactionController))
 
 export { transactionRouter }

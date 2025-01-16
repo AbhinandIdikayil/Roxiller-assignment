@@ -18,9 +18,9 @@ export class StatisticsService implements IStatisticsService {
         const totalNumberOfSoldItem = await this.statisticsRepo.totalNumberOfSoldItem(monthEnum)
         const totalNumberOfUnSoldItem = await this.statisticsRepo.totalNumberOfUnSoldItem(monthEnum)
         return {
-            totalSaleOfMonth,
-            totalNumberOfSoldItem,
-            totalNumberOfUnSoldItem
+            totalSaleOfMonth: totalSaleOfMonth?.[0] || { count: 0 },
+            totalNumberOfSoldItem: totalNumberOfSoldItem?.[0] || { count: 0 },
+            totalNumberOfUnSoldItem: totalNumberOfUnSoldItem?.[0] || { count: 0 }
         }
     }
     async unique_category_and_number_of_items_from_that_category(month: string = 'Mar'): Promise<any> {
@@ -37,6 +37,8 @@ export class StatisticsService implements IStatisticsService {
         const monthEnum = month as Month;
         const data = await this.statisticsRepo.barChartRepo_with_priceRange_and_numberOfItems(monthEnum);
         const transformedData = transformBarChartData(data[0])
+        console.log(data)
+        console.log(transformedData)
         return transformedData
     }
 }

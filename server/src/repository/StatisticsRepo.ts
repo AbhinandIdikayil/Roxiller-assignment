@@ -25,6 +25,12 @@ export class StatisticsRepo implements IStatisticRepo {
                     _id: '$month',
                     totalSales: { $sum: '$price' }
                 }
+            },
+            {
+                $project: {
+                    totalSales: 1,
+                    _id: 0
+                }
             }
         ])
     }
