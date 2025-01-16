@@ -39,7 +39,7 @@ const BarChart = () => {
 
 
   return (
-    <div style={{ width: "70%", height: 400 }}>
+    <div style={{ width: "70%", height: 500 }}>
       <div className="flex justify-end ">
         <div
           // style={{ zIndex: 99 }}

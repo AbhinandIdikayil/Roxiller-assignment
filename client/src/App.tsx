@@ -1,5 +1,6 @@
 import './App.css'
 import BarChart from './components/charts/BarChart'
+import TransactionStatistics from './components/statisctics/TransactionStatistics'
 import TransactionTable from './components/table/transaction/page'
 
 function App() {
@@ -7,7 +8,10 @@ function App() {
   return (
     <>
       <TransactionTable />
-      <BarChart />
+      <div className='flex gap-[13px] justify-between'>
+        <BarChart />
+        <TransactionStatistics />
+      </div>
     </>
   )
 }
